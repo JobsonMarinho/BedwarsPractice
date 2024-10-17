@@ -47,11 +47,10 @@ public class BedWarsPracticeCommand extends ParentCommand {
     }
 
     public boolean execute(CommandSender sender, String command, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(Language.MessagesEnum.PLUGIN_NO_CONSOLE.getString());
             return false;
         } else {
-            Player player = (Player) sender;
             UUID uuid = player.getUniqueId();
             if (Settings.SettingsEnum.PRACTICE_PROXY_ENABLED.getBoolean()) {
                 return false;
@@ -77,15 +76,11 @@ public class BedWarsPracticeCommand extends ParentCommand {
                 byte cmd = -1; // Initialize cmd here
                 if (args.length != 0) {
                     arg0 = args[0].toLowerCase();
-                    switch (arg0) {
-                        case "quit":
-                            cmd = 1;
-                            break;
-                        case "leave":
-                            cmd = 0;
-                            break;
-                    }
-
+                    cmd = switch (arg0) {
+                        case "quit" -> 1;
+                        case "leave" -> 0;
+                        default -> cmd;
+                    };
 
                     switch (cmd) {
                         case 0:
@@ -111,20 +106,13 @@ public class BedWarsPracticeCommand extends ParentCommand {
                 }
                 else if (args.length != 0) {
                     arg0 = args[0].toLowerCase();
-                    switch (arg0) {
-                        case "spectate":
-                            cmd = 3;
-                            break;
-                        case "mlg":
-                            cmd = 1;
-                            break;
-                        case "bridging":
-                            cmd = 0;
-                            break;
-                        case "fireballtntjumping":
-                            cmd = 2;
-                            break;
-                    }
+                    cmd = switch (arg0) {
+                        case "spectate" -> 3;
+                        case "mlg" -> 1;
+                        case "bridging" -> 0;
+                        case "fireballtntjumping" -> 2;
+                        default -> cmd;
+                    };
 
 
                     switch (cmd) {

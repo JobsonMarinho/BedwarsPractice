@@ -25,14 +25,7 @@ public class Language {
     }
 
     public void init() {
-        new Chinese();
-        new Deutsch();
         new English();
-        new Italian();
-        new Polish();
-        new Romanian();
-        new Vietnamese();
-
 
         ArrayList<String> languageList = new ArrayList<>();
         File languageDir = new File("plugins/BedWarsPractice/Languages");

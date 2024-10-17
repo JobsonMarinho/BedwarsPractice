@@ -2,9 +2,9 @@
 
 main: com.github.zandy.bedwarspractice.Main
 name: BedWarsPractice
-version: '1.7'
+version: '1.9'
 description: A BedWars Practice plugin to train your players.
-author: Zandy
+authors: [Zandy, Jobs]
 depend:
 - WorldEdit
 softdepend:

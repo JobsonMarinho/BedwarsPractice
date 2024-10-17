@@ -50,7 +50,7 @@ public class GameEngine implements Listener {
     private final HashMap<UUID, Integer> lastOffset = new HashMap<>();
     private final HashMap<UUID, List<UUID>> spectators = new HashMap<>();
     private final List<Integer> availableOffsets = new ArrayList<>();
-    private final Location baseLocation = new Location(WorldEngine.getInstance().getPracticeWorld(), -2.999986E7D, 100.0D, 0.0D);
+    private final Location baseLocation = new Location(WorldEngine.getInstance().getPracticeWorld(), 500, 100.0D, 0.0D);
     private final Calendar calendar = Calendar.getInstance();
     private final List<UUID> pending = new ArrayList<>();
     private final List<Material> restrictedInteract;
@@ -71,7 +71,7 @@ public class GameEngine implements Listener {
     public void init() {
         File dataFile = new File("plugins/BedWarsPractice/Data/");
         if (dataFile.exists()) {
-            Arrays.stream(dataFile.listFiles()).forEach((file) -> {
+            Arrays.stream(Objects.requireNonNull(dataFile.listFiles())).forEach((file) -> {
                 String fileName = file.getName().replace(".yml", "");
                 this.practiceFile.put(fileName, new BambooFile(fileName, "Data"));
             });
@@ -84,7 +84,7 @@ public class GameEngine implements Listener {
     public void rebuildSchematicCache() {
         File schematicsFile = new File("plugins/BedWarsPractice/Schematics/");
         if (schematicsFile.exists()) {
-            Arrays.stream(schematicsFile.listFiles()).forEach((schematic) -> {
+            Arrays.stream(Objects.requireNonNull(schematicsFile.listFiles())).forEach((schematic) -> {
                 String schematicName = schematic.getName();
                 if (schematicName.contains("BRIDGING") || schematicName.contains("MLG") || schematicName.contains("FIREBALL-TNT-JUMPING")) {
                     try {
